@@ -1,0 +1,38 @@
+
+:root {
+    --background-overlay: #33333366;
+    --top-menu-background-overlay: rgba(51, 51, 51, 0.64);
+    --light-overlay: #33333366;
+    --main-pane-bottom-size: 100px;
+
+    --theme-corner_radius: 4px;
+    --theme-default_preview_image_url: url('/default-assets/new-page.jpg');
+    --theme-white-logo_image_url: url('/default-assets/doublex-white-logo.png');
+    --theme-grey-logo_image_url: url('/default-assets/doublex-grey-logo.png');
+    --theme-primary_color1: #ff3200;
+    --theme-primary_color2: #282828;
+    --theme-secondary_color: #40f2ff;
+    --theme-text_font: MarkR;
+    --theme-title_font: Rub-Black;
+
+    /*WHITE LABEL CSS PARAMETERS*/
+    /* 
+    var(--theme-corner_radius)
+    var(--theme-default_preview_image_url)
+    var(--theme-white-logo_image_url)
+    var(--theme-grey-logo_image_url)
+    var(--theme-primary_color1)
+    var(--theme-primary_color2)
+    var(--theme-secondary_color)
+    var(--theme-text_font)
+    var(--theme-title_font) 
+    */
+}
+
+html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; font-family: var(--theme-text_font); }
+
+
+.listings-component { position: absolute; height: 100%; width: 100%; background-image: url(/assets/7.jpg); background-size: cover; }
+.listings-component > div { height: 100%; width: 100%; background-color: #000000b8; background-size: cover; }
+.listings-component > div .logo { padding-top: 30px; padding-left: 30px;  display: inline-block; }
+.listings-component > div .logo div { background-image: url('/assets/doublex-white-logo.png'); background-repeat: no-repeat; width: 134px; height: 26px; background-position: center; background-size: 100% 100%; cursor: pointer; }

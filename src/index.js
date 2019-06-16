@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = 'My Minimal React Webpack Babel Setupsdfdsfdsfsdfdfsdfsfsfsfsfsdfdfsfsfsdfsdfssfsdfdsfsdf';
+import store from './store';
 
-ReactDOM.render(
-    <div>{title}</div>,
-    document.getElementById('app'),
-);
+// import './index.css';
+
+import App from './app';
+
+
+async function init() {
+
+    await store.init();
+
+    ReactDOM.render(<App />, document.getElementById('app'));
+
+}
+
+init();
+
+
 
 // to disable browser auto reloading
 // module.hot.accept();
