@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { BrowserRouter } from 'react-router-dom';
 
 import store from './store';
@@ -15,14 +14,14 @@ async function init() {
     await store.init();
 
     ReactDOM.render((
-        <App />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     ), document.getElementById('root'));
 
 }
 
 init();
-
-
 
 // to disable browser auto reloading
 // module.hot.accept();

@@ -1,29 +1,14 @@
 
 :root {
-    --background-overlay: #33333366;
-    --top-menu-background-overlay: rgba(51, 51, 51, 0.64);
-    --light-overlay: #33333366;
-    --main-pane-bottom-size: 100px;
-
-    --theme-corner_radius: 4px;
-    --theme-default_preview_image_url: url('/default-assets/new-page.jpg');
-    --theme-white-logo_image_url: url('/default-assets/doublex-white-logo.png');
-    --theme-grey-logo_image_url: url('/default-assets/doublex-grey-logo.png');
-    --theme-primary_color1: #ff3200;
-    --theme-primary_color2: #282828;
-    --theme-secondary_color: #40f2ff;
-    --theme-text_font: MarkR;
-    --theme-title_font: Rub-Black;
+    --logo-image: url('/assets/noname-logo.png');
 }
 
-html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; font-family: var(--theme-text_font); }
+html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; }
 
 
 .app { position: relative; height: 100%; }
+
 .app .app-top-bar { height: 10%; }
+.app .app-top-bar .logo { position: absolute; top: 30px; left: 30px; background-image: var(--logo-image); background-repeat: no-repeat; width: 134px; height: 26px; background-position: center; background-size: 100% 100%; cursor: pointer;  }
 
-
-
-.app .app-top-bar .logo { position: absolute; top: 30px; left: 30px; background-image: url('/assets/noname-logo.png'); background-repeat: no-repeat; width: 134px; height: 26px; background-position: center; background-size: 100% 100%; cursor: pointer;  }
-
-.app .app-content { height: 90%; }
+.app .app-content { height: 90%; padding: 0 20px; }
