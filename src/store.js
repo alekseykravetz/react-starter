@@ -5,15 +5,23 @@ class Store {
     @observable
     user = null;
 
+    @observable
+    counter = 0;
+
     async init() {
 
         this.user = { name: 'alex' };
+
+        this.startCounter();
     }
 
-    // async navigateTo() {
+    @action
+    startCounter() {
+        setInterval(() => {
+            this.counter++;
+        }, 1000);
+    }
 
-    //     this.user = { name: 'alex' };
-    // }
 
 }
 

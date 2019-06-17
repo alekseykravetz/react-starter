@@ -1,22 +1,30 @@
 import React from 'react';
 
 import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
+
+import store from '../store';
 
 
-
-export default class PageOne extends React.Component {
+@observer
+class HomeRoute extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div>page One</div>
+                <div>Home Route</div>
+
+                <div>
+                    Counter: {store.counter}
+                </div>
+
                 <div onClick={() => {
                     console.log('page One click');
                     console.log(this);
                     this.props.history.push('/two');
-                }}>navigate Two</div>
+                }}>navigate About Us</div>
 
                 <Link to="/two">
-                Two
+                    About
                 </Link>
 
             </React.Fragment>
@@ -24,3 +32,5 @@ export default class PageOne extends React.Component {
         );
     }
 }
+
+export default HomeRoute;

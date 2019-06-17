@@ -5,7 +5,7 @@ export default class PageNotFound extends React.Component {
     render() {
         return (
             <div className="page-not-found-wrapper">
-                <img src="/default-assets/404.png" alt="page not found" />
+                <img src="/assets/404.png" alt="page not found" />
             </div>
         );
     }
