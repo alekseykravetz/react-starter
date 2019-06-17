@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+
+
 
 export default class PageOne extends React.Component {
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <div>page One</div>
                 <div onClick={() => {
                     console.log('page One click');
@@ -12,7 +15,11 @@ export default class PageOne extends React.Component {
                     this.props.history.push('/two');
                 }}>navigate Two</div>
 
-            </div>
+                <Link to="/two">
+                Two
+                </Link>
+
+            </React.Fragment>
 
         );
     }
