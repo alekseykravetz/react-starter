@@ -1,5 +1,8 @@
 import { observable, action, toJS } from 'mobx';
 
+import * as dataService from './data.service';
+
+
 class Store {
 
     @observable
@@ -16,6 +19,14 @@ class Store {
         this.user = { name: 'alex' };
 
         this.startCounter();
+
+        this.getUsers();
+    }
+
+    @action
+    async getUsers() {
+        const users = await dataService.getUsers();
+        console.log(users);
     }
 
     @action
