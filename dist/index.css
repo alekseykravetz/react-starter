@@ -6,9 +6,27 @@
 html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; }
 
 
-.app { position: relative; height: 100%; }
+.app { position: relative; height: 100%; background-color: #f4f4f4; }
+
+.app .app-button { width: 85px; display: flex; justify-content: center; align-items: center; border-radius: 21px; cursor: pointer; font-size: 17px; font-weight: 700; border: #ff3300 solid 2px; }
+.app .app-button.primary { background-color: #ff3300; color: white; margin-left: 10px; }
+.app .app-button.secondary { background-color: white; color: #ff3300; margin-left: 0; }
+.app .app-button.disabled { cursor: not-allowed; background-color: #6b6b6b; border-color: #6b6b6b; }
+
+
+.app-control { max-width: 200px; }
+.app-control .label { margin-top: 5px; color: #282828; font-size: 14px; font-weight: 500; }
+.app-control input[type="text"] { background: none; border: 1px solid #8e8e8e; border-radius: 6px; font-size: 14px;  color: #282828; outline: none; padding: 5px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
 
 .app .app-top-bar { height: 10%; }
 .app .app-top-bar .logo { position: absolute; top: 30px; left: 30px; background-image: var(--logo-image); background-repeat: no-repeat; width: 134px; height: 26px; background-position: center; background-size: 100% 100%; cursor: pointer;  }
 
-.app .app-content { height: 90%; padding: 0 20px; }
+.app .app-content { margin: 0 20px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16); border-radius: 6px; background-color: #fcfcfc; }
+
+.app .app-content .home-title { padding: 10px; border-radius: 6px 6px 0 0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16); background-color: #6b6b6b; }
+.app .app-content .home-title span { margin-left: 20px; color: #61f4ff; font-size: 19px; font-weight: 500; }
+.app .app-content .home-content { padding: 20px; }
+.app .app-content .home-content .home-content-buttons { display: flex; user-select: none; justify-content: flex-end; margin-top: 20px; margin-right: 20px; }
+
+

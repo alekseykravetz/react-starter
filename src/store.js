@@ -8,6 +8,9 @@ class Store {
     @observable
     counter = 0;
 
+    @observable
+    someInput = 'free text';
+
     async init() {
 
         this.user = { name: 'alex' };
@@ -20,6 +23,11 @@ class Store {
         setInterval(() => {
             this.counter++;
         }, 1000);
+    }
+
+    @action.bound
+    updateSomeInputProperty(value) {
+        this.someInput = value;
     }
 
 
