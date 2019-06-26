@@ -1,3 +1,4 @@
+import config from './config';
 
 
 export async function authenticatedFetch(verb, url, body) {
@@ -16,7 +17,7 @@ export async function authenticatedFetch(verb, url, body) {
         body: JSON.stringify(body)
     };
 
-    const request = new Request(`http://localhost:1020/api/v1/${url}`, requestInfo);
+    const request = new Request(`${config.apiUrl}/${url}`, requestInfo);
 
     const result = await fetch(request);
 
@@ -39,7 +40,7 @@ export async function authenticatedFetch(verb, url, body) {
 }
 
 export async function getUsers() {
-    const result = await fetch(`http://localhost:1020/api/v1/${'users'}`);
+    const result = await fetch(`${config.apiUrl}/${'users'}`);
 
     const json = await result.json();
     return json;

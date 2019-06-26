@@ -30,6 +30,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        port: 9010
     }
 };
