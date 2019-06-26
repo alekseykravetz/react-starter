@@ -1,4 +1,5 @@
-import { observable, action, toJS } from 'mobx';
+import { observable, action } from 'mobx';
+import jwt from 'jsonwebtoken';
 
 import * as dataService from './data.service';
 
@@ -41,6 +42,55 @@ class Store {
         this.someInput = value;
     }
 
+    @action.bound
+    async signUp() {
+        const user = {
+            email: 'alex2@alex.com',
+            display_name: 'alex last',
+            password: '123456'
+        };
+
+        const tokens = await dataService.signUpUser(user);
+
+        console.log('tokens', tokens);
+
+        // dataService.setToken(tokens.access_token);
+
+        this.loggedInUser = jwt.decode(tokens.refresh_token);
+
+        console.log('this.loggedInUser', this.loggedInUser);
+
+        // this.dxAccessToken = await dataService.createDxperienceUser();
+
+        // window.localStorage.setItem('refresh_token', tokens.refresh_token);
+    }
+
+    @action.bound
+    async signIn() {
+
+        const user = {
+            email: 'alex2@alex.com',
+            password: '123456'
+        };
+
+        const tokens = await dataService.signInUser(user);
+
+        console.log('tokens', tokens);
+
+        // dataService.setToken(tokens.access_token);
+
+        this.loggedInUser = jwt.decode(tokens.refresh_token);
+
+        console.log('this.loggedInUser', this.loggedInUser);
+
+        // this.dxAccessToken = await dataService.getDxperienceAccessToken();
+
+        // window.localStorage.setItem('refresh_token', tokens.refresh_token);
+
+
+        const privateData = await dataService.getPrivateData(tokens.access_token);
+        console.log(privateData);
+    }
 
 }
 

@@ -48,6 +48,11 @@ class HomeRoute extends React.Component {
                         <div className={`app-button primary  ${false ? '' : 'disabled'}`} onClick={() => false && this.props.history.push('/one')}>Next</div>
                     </div>
 
+                    <div className="home-content-buttons">
+                        <div className="app-button primary" onClick={store.signUp}>Signup</div>
+                        <div className="app-button primary" onClick={store.signIn}>Signin</div>
+                    </div>
+                    
                 </div>
 
             </React.Fragment>

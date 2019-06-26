@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "mobx": "^5.10.1",
     "mobx-react": "^6.0.3",
     "react": "^16.8.6",

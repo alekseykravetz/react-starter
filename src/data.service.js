@@ -1,21 +1,21 @@
 import config from './config';
 
 
-export async function authenticatedFetch(verb, url, body) {
+export async function authenticatedFetch(verb, url, body, accessToken) {
 
     const headers = {
-        'AUTHORIZATION': `Bearer ${'AccessToken'}`
+        'AUTHORIZATION': `Bearer ${accessToken}`
+    };
+
+    const requestInfo = {
+        method: verb,
+        headers
     };
 
     if (body) {
         headers['Content-Type'] = 'application/json';
+        requestInfo.body = JSON.stringify(body);
     }
-
-    const requestInfo = {
-        method: verb,
-        headers,
-        body: JSON.stringify(body)
-    };
 
     const request = new Request(`${config.apiUrl}/${url}`, requestInfo);
 
@@ -39,8 +39,15 @@ export async function authenticatedFetch(verb, url, body) {
     return json;
 }
 
+export async function getPrivateData(accessToken) {
+
+    const result = await authenticatedFetch('get', 'private-api', null, accessToken);
+
+    return result;
+}
+
 export async function getUsers() {
-    const result = await fetch(`${config.apiUrl}/${'users'}`);
+    const result = await fetch(`${config.apiUrl}/users`);
 
     const json = await result.json();
     return json;
@@ -50,3 +57,38 @@ export async function getUsers() {
 //     const result = await authenticatedFetch('GET', 'users');
 //     return result;
 // }
+
+
+export async function signUpUser(user) {
+
+    const fetchOptions = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+
+    const url = `${config.apiUrl}/signup`;
+
+    const result = await fetch(url, fetchOptions);
+
+    const json = await result.json();
+
+    return json;
+}
+
+export async function signInUser(user) {
+
+    const fetchOptions = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+
+    const url = `${config.apiUrl}/signin`;
+
+    const result = await fetch(url, fetchOptions);
+
+    const json = await result.json();
+
+    return json;
+}
