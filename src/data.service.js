@@ -1,49 +1,17 @@
 import config from './config';
 
 
-export async function authenticatedFetch(verb, url, body, accessToken) {
+export async function getPrivateData(accessToken) {
 
-    const headers = {
-        'AUTHORIZATION': `Bearer ${accessToken}`
-    };
-
-    const requestInfo = {
-        method: verb,
-        headers
-    };
-
-    if (body) {
-        headers['Content-Type'] = 'application/json';
-        requestInfo.body = JSON.stringify(body);
-    }
-
-    const request = new Request(`${config.apiUrl}/${url}`, requestInfo);
-
-    const result = await fetch(request);
+    const result = await fetch(`${config.apiUrl}/private-api`, { method: 'get', headers: { 'AUTHORIZATION': `Bearer ${accessToken}` } });
 
     if (result.status === 400 || result.status === 401) {
         alert('Unauthorized request! (token has expired or no token provided)');
-        window.parent.postMessage('logout', '*');
-    }
-
-    if (result.status === 403) {
-        const message = await result.json();
-        return { errMsg: message };
-    }
-
-    if (result.status !== 200) {
-        throw new Error(`The result status is not 200 (${result.status}), status text: ${result.statusText}`);
+        // window.parent.postMessage('logout', '*');
     }
 
     const json = await result.json();
     return json;
-}
-
-export async function getPrivateData(accessToken) {
-
-    const result = await authenticatedFetch('get', 'private-api', null, accessToken);
-
-    return result;
 }
 
 export async function getUsers() {
