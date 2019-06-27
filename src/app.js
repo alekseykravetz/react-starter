@@ -34,8 +34,8 @@ export default class App extends React.Component {
                 <div className="app-content">
                     <Switch>
                         <Route path="/unauthorized" component={PageUnauthorized} />
-                        <PrivateRoute exact path="/" component={HomeRoute} />
-                        <PrivateRoute path="/one" component={HomeRoute} />
+                        <Route exact path="/" component={HomeRoute} />
+                        <Route path="/one" component={HomeRoute} />
                         <PrivateRoute path="/two" component={AboutRoute} />
                         <Route path="**" component={PageNotFound} />
                     </Switch>

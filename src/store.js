@@ -17,8 +17,6 @@ class Store {
 
     async init() {
 
-        this.user = { name: 'alex' };
-
         this.startCounter();
 
         this.getUsers();
@@ -44,6 +42,7 @@ class Store {
 
     @action.bound
     async signUp() {
+
         const user = {
             email: 'alex2@alex.com',
             display_name: 'alex last',
@@ -51,18 +50,13 @@ class Store {
         };
 
         const tokens = await dataService.signUpUser(user);
-
         console.log('tokens', tokens);
 
-        // dataService.setToken(tokens.access_token);
+        window.localStorage.setItem('accessToken', tokens.access_token);
 
-        this.loggedInUser = jwt.decode(tokens.refresh_token);
+        this.user = jwt.decode(tokens.refresh_token);
 
-        console.log('this.loggedInUser', this.loggedInUser);
-
-        // this.dxAccessToken = await dataService.createDxperienceUser();
-
-        // window.localStorage.setItem('refresh_token', tokens.refresh_token);
+        console.log('this.user', this.user);
     }
 
     @action.bound
@@ -73,23 +67,18 @@ class Store {
             password: '123456'
         };
 
-        const tokens = await dataService.signInUser(user);
+        const accessToken = await dataService.signInUser(user);
 
-        console.log('tokens', tokens);
+        console.log('accessToken', accessToken);
 
-        // dataService.setToken(tokens.access_token);
+        window.localStorage.setItem('accessToken', accessToken);
 
-        this.loggedInUser = jwt.decode(tokens.refresh_token);
+        this.user = jwt.decode(accessToken);
 
-        console.log('this.loggedInUser', this.loggedInUser);
+        console.log('this.user', this.user);
 
-        // this.dxAccessToken = await dataService.getDxperienceAccessToken();
-
-        // window.localStorage.setItem('refresh_token', tokens.refresh_token);
-
-
-        const privateData = await dataService.getPrivateData(tokens.access_token);
-        console.log(privateData);
+        const privateData = await dataService.getPrivateData(accessToken);
+        console.log('privateData', privateData);
     }
 
 }
