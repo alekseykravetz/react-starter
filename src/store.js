@@ -45,7 +45,7 @@ class Store {
 
         const user = {
             email: 'alex2@alex.com',
-            display_name: 'alex last',
+            name: 'alex last',
             password: '123456'
         };
 
