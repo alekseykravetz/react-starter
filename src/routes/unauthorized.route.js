@@ -2,6 +2,7 @@ import React from 'react';
 
 
 export default class PageUnauthorized extends React.Component {
+   
     async componentDidMount() {
         document.title = 'Unauthorized User!';
     }

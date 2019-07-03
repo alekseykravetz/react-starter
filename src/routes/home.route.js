@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import store from '../store';
@@ -11,7 +10,7 @@ class HomeRoute extends React.Component {
     render() {
         return (
             <React.Fragment>
-                
+
                 <div className="home-title">
                     <span>Home Route</span>
                 </div>

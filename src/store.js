@@ -1,4 +1,4 @@
-import { observable, action, toJS } from 'mobx';
+import { observable, action } from 'mobx';
 
 import * as dataService from './data.service';
 
@@ -43,7 +43,6 @@ class Store {
 
 
 }
-
 
 const store = new Store();
 
