@@ -29,14 +29,20 @@ export default class App extends React.Component {
                         <div className="logo" />
                     </Link>
 
+                    <nav>
+                        <Link to="/home">Home</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/wrong-path">Wrong navigation</Link>
+                    </nav>
+
                 </div>
 
                 <div className="app-content">
                     <Switch>
                         <Route path="/unauthorized" component={PageUnauthorized} />
                         <PrivateRoute exact path="/" component={HomeRoute} />
-                        <PrivateRoute path="/one" component={HomeRoute} />
-                        <PrivateRoute path="/two" component={AboutRoute} />
+                        <PrivateRoute path="/home" component={HomeRoute} />
+                        <PrivateRoute path="/about" component={AboutRoute} />
                         <Route path="**" component={PageNotFound} />
                     </Switch>
                 </div>
