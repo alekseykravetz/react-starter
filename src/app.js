@@ -1,21 +1,10 @@
 import React from 'react';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
-
-import store from './store';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import HomeRoute from './routes/home.route';
 import AboutRoute from './routes/about.route';
-import PageUnauthorized from './routes/unauthorized.route';
 import PageNotFound from './routes/not-found.route';
 
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-        store.user === null
-            ? <Redirect to="/unauthorized" />
-            : <Component {...props} />
-    )} />
-);
 
 export default class App extends React.Component {
     render() {
@@ -39,10 +28,9 @@ export default class App extends React.Component {
 
                 <div className="app-content">
                     <Switch>
-                        <Route path="/unauthorized" component={PageUnauthorized} />
-                        <PrivateRoute exact path="/" component={HomeRoute} />
-                        <PrivateRoute path="/home" component={HomeRoute} />
-                        <PrivateRoute path="/about" component={AboutRoute} />
+                        <Route exact path="/" component={HomeRoute} />
+                        <Route path="/home" component={HomeRoute} />
+                        <Route path="/about" component={AboutRoute} />
                         <Route path="**" component={PageNotFound} />
                     </Switch>
                 </div>
