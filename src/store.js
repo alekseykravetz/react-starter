@@ -6,9 +6,6 @@ import * as dataService from './data.service';
 class Store {
 
     @observable
-    user = null;
-
-    @observable
     counter = 0;
 
     @observable
@@ -16,17 +13,19 @@ class Store {
 
     async init() {
 
-        this.user = { name: 'alex' };
-
         this.startCounter();
 
-        this.getUsers();
-    }
+        const serverHistories = await dataService.getServerHistories();
+        console.log('serverHistories', serverHistories);
 
-    @action
-    async getUsers() {
-        const users = await dataService.getUsers();
-        console.log(users);
+        const lastServerHistory = serverHistories.slice(-1)[0];
+        console.log('lastServerHistory', lastServerHistory);
+
+        const serverHistoryFromServer = await dataService.getServerHistory(lastServerHistory._id);
+        console.log('serverHistoryFromServer', serverHistoryFromServer);
+
+        const serverPingResult = await dataService.pingServer('Some Name', 'Some message');
+        console.log('serverPingResult', serverPingResult);
     }
 
     @action
@@ -40,7 +39,6 @@ class Store {
     updateSomeInputProperty(value) {
         this.someInput = value;
     }
-
 
 }
 
