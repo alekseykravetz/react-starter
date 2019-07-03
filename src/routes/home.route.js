@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import store from '../store';
@@ -11,41 +10,40 @@ class HomeRoute extends React.Component {
     render() {
         return (
             <React.Fragment>
+
                 <div className="home-title">
                     <span>Home Route</span>
                 </div>
 
                 <div className="home-content">
 
-                    <div>
+                    <div className="app-vertical-container-example">
                         Counter: {store.counter}
                     </div>
 
-                    <div onClick={() => {
-                        console.log('page One click');
-                        console.log(this);
-                        this.props.history.push('/two');
-                    }}>navigate About Us</div>
-
-                    <Link to="/two">About</Link>
-
-                    <div className="app-control">
-                        <div className="app-control-label">Listing Name</div>
-                        <input type="text" value={store.someInput} onChange={e => store.updateSomeInputProperty(e.target.value)} />
+                    <div className="app-vertical-container-example" onClick={() => this.props.history.push('/about')}>navigate to About Page</div>
+                    <div className="app-vertical-container-example">
+                        <Link to="/about">About</Link>
                     </div>
 
-                    <div>
-                        {store.someInput}
-                    </div>
-
-                    <div className="home-content-buttons">
-                        <div className="app-button secondary" onClick={() => this.props.history.push('/two')}>Back</div>
-                        <div className="app-button primary" onClick={() => this.props.history.push('/one')}>Next</div>
+                    <div className="app-vertical-container-example">
+                        <div className="app-control">
+                            <div className="app-control-label">Input Label</div>
+                            <input type="text" value={store.someInput} onChange={e => store.updateSomeInputProperty(e.target.value)} />
+                        </div>
+                        <div>
+                            Input Value: {store.someInput}
+                        </div>
                     </div>
 
                     <div className="home-content-buttons">
-                        <div className={`app-button secondary  ${false ? '' : 'disabled'}`} onClick={() => false && this.props.history.push('/two')}>Back</div>
-                        <div className={`app-button primary  ${false ? '' : 'disabled'}`} onClick={() => false && this.props.history.push('/one')}>Next</div>
+                        <div className="app-button secondary" onClick={() => console.log('Back button clicked')}>Back</div>
+                        <div className="app-button primary" onClick={() => console.log('Next button clicked')}>Next</div>
+                    </div>
+
+                    <div className="home-content-buttons">
+                        <div className={`app-button secondary  ${false ? '' : 'disabled'}`} onClick={() => false && console.log('Back button clicked')}>Back</div>
+                        <div className={`app-button primary  ${false ? '' : 'disabled'}`} onClick={() => false && console.log('Next button clicked')}>Next</div>
                     </div>
 
                     <div className="home-content-buttons">
@@ -56,7 +54,6 @@ class HomeRoute extends React.Component {
                 </div>
 
             </React.Fragment>
-
         );
     }
 }
