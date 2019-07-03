@@ -7,10 +7,9 @@ class AboutRoute extends React.Component {
             <React.Fragment>
                 <div>About</div>
                 <div onClick={() => {
-                    console.log('page Two click');
-                    console.log(this);
-                    this.props.history.push('/one');
-                }}>navigate Home</div>
+                    console.log('page Home click');
+                    this.props.history.push('/home');
+                }}>navigate to Home page</div>
             </React.Fragment>
 
         );

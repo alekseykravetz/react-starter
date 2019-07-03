@@ -21,12 +21,6 @@ export async function getUsers() {
     return json;
 }
 
-// export async function getUsers() {
-//     const result = await authenticatedFetch('GET', 'users');
-//     return result;
-// }
-
-
 export async function signUpUser(user) {
 
     const fetchOptions = {
