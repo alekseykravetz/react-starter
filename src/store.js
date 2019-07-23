@@ -15,17 +15,24 @@ class Store {
 
         this.startCounter();
 
-        const serverHistories = await dataService.getServerHistories();
-        console.log('serverHistories', serverHistories);
+        try {
+            const serverHistories = await dataService.getServerHistories();
+            console.log('serverHistories', serverHistories);
+    
+            const lastServerHistory = serverHistories.slice(-1)[0];
+            console.log('lastServerHistory', lastServerHistory);
+    
+            const serverHistoryFromServer = await dataService.getServerHistory(lastServerHistory._id);
+            console.log('serverHistoryFromServer', serverHistoryFromServer);
+    
+            const serverPingResult = await dataService.pingServer('Some Name', 'Some message');
+            console.log('serverPingResult', serverPingResult);
 
-        const lastServerHistory = serverHistories.slice(-1)[0];
-        console.log('lastServerHistory', lastServerHistory);
-
-        const serverHistoryFromServer = await dataService.getServerHistory(lastServerHistory._id);
-        console.log('serverHistoryFromServer', serverHistoryFromServer);
-
-        const serverPingResult = await dataService.pingServer('Some Name', 'Some message');
-        console.log('serverPingResult', serverPingResult);
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+        return null;
     }
 
     @action
