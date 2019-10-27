@@ -4,16 +4,20 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    
     entry: './src/index.js',
+
+    target: 'web', // default
+    // externals: {
+    //     'react': 'React',
+    //     'react-dom': 'ReactDOM',
+    //     'react-router': 'ReactRouter'
+    // },
+
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-            {
-                test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['babel-loader', 'eslint-loader']
             }
@@ -24,7 +28,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
+        publicPath: '',
         filename: 'bundle.js'
     },
     devtool: 'source-map',
@@ -35,7 +39,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './dist',
-        port: 9010
+        contentBase: path.resolve(__dirname, 'dist'),
+        port: 9010,
+        historyApiFallback: true // this prevents the default browser full page refresh on form submission and link change
     }
 };
