@@ -10,11 +10,6 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
                 use: ['babel-loader', 'eslint-loader']
             }
         ]
@@ -35,7 +30,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        contentBase: './dist',
-        port: 9010
+        contentBase: path.resolve(__dirname, 'dist'),
+        port: 9010,
+        historyApiFallback: true // this prevents the default browser full page refresh on form submission and link change
     }
 };
