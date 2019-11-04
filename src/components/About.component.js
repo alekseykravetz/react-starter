@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class AboutRoute extends React.Component {
+class About extends React.Component {
     render() {
         return (
             <React.Fragment>
@@ -16,4 +16,4 @@ class AboutRoute extends React.Component {
     }
 }
 
-export default AboutRoute;
+export default About;

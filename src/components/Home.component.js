@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { Button } from '@material-ui/core';
+
 // import { observer } from 'mobx-react';
 
 import store from '../store';
 
 
-const HomeRoute = props => {
-
-    console.log('Home props', props);
+const Home = props => {
 
     return (
         <React.Fragment>
@@ -37,6 +38,11 @@ const HomeRoute = props => {
                     </div>
                 </div>
 
+
+                <Button variant="contained" color="primary">
+                    Hello World
+                </Button>
+
                 <div className="home-content-buttons">
                     <div className="app-button secondary" onClick={() => console.log('Back button clicked')}>Back</div>
                     <div className="app-button primary" onClick={() => console.log('Next button clicked')}>Next</div>
@@ -58,4 +64,4 @@ const HomeRoute = props => {
     );
 };
 
-export default HomeRoute;
+export default Home;

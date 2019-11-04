@@ -7,7 +7,7 @@ import store from './store';
 // import './index.css';  // Webpack css loader required
 
 
-import App from './app';
+import App from './components/App.component';
 
 
 async function init() {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default class PageNotFound extends React.Component {
+export default class MissingRoute extends React.Component {
     render() {
         return (
             <div className="page-not-found-wrapper">
