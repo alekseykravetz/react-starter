@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import useCommonStyle from './common.style';
+import { useFormInput } from '../hooks/useFormInput.hook';
+
 // import { observer } from 'mobx-react';
 
 import store from '../store';
@@ -11,9 +14,11 @@ import store from '../store';
 import TextInput from './controls/TextInput.control.component';
 
 
-
 const Home = props => {
     const classes = useStyles();
+    const commonClasses = useCommonStyle();
+    
+    const nameForm = useFormInput('enter name');
 
     return (
         <React.Fragment>
@@ -38,6 +43,10 @@ const Home = props => {
 
                 <div className={classes.verticalContainer}>
                     <TextInput label="Input label" />
+                </div>
+
+                <div className={classes.verticalContainer}>
+                    <input type="text" {...nameForm} className={commonClasses.input} />
                 </div>
 
 
