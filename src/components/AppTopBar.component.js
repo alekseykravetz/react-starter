@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Tabs, Tab } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import store from '../store';
-import * as dataService from '../data.service';
-
-import { useAuthentication } from '../hooks/useAuthentication.hook';
+import { AuthContext } from '../contexts/Auth.context';
 
 
 const useStyles = makeStyles(theme => ({
@@ -22,21 +19,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 const AppTopBar = props => {
+   
     const classes = useStyles();
-
-    const { user, token, signIn } = useAuthentication();
-
-    console.log('AppTopBar.user', user);
-    console.log('AppTopBar.token', token);
-    console.log('AppTopBar.signIn', signIn);
-
-
-    const getPrivateData = async accessToken => {
-        const privateData = await dataService.getPrivateData(accessToken);
-        console.log('privateData', privateData);
-    };
-
+    const { user, token, signIn } = useContext(AuthContext);
 
     return (
         <AppBar position="static">
@@ -47,17 +34,13 @@ const AppTopBar = props => {
                 <Typography variant="h6" className={classes.title}>
                     App
                 </Typography>
-
                 <AppTopBarNavigationTabs {...props} />
-
                 {token &&
                     <Typography variant="h6">
                         {user.email}
                     </Typography>
                 }
-
                 <Button color="inherit" onClick={() => signIn('alex2@alex.com', '123456')}>Login</Button>
-                <Button color="inherit" onClick={() => getPrivateData(token)}>Private Data</Button>
             </Toolbar>
         </AppBar>
     );

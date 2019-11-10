@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 
 const TextInput = ({label}) => {
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
+    const [value, setValue] = useState('');
 
     return (
         <>

@@ -7,17 +7,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import useCommonStyle from './common.style';
 import { useFormInput } from '../hooks/useFormInput.hook';
 
-// import { observer } from 'mobx-react';
-
-import store from '../store';
-
 import TextInput from './controls/TextInput.control.component';
+import Time from './controls/Time.control.component';
+import PrivateData from './controls/PrivateData.control.component';
+import ServerConnectionCheck from './controls/ServerConnectionCheck.control.component';
 
 
 const Home = props => {
     const classes = useStyles();
     const commonClasses = useCommonStyle();
-    
+
     const nameForm = useFormInput('enter name');
 
     return (
@@ -30,7 +29,7 @@ const Home = props => {
             <div className={classes.Content}>
 
                 <div className={classes.verticalContainer}>
-                    Counter: {store.counter}
+                    <Time />
                 </div>
 
                 <div className={classes.verticalContainer}
@@ -54,6 +53,15 @@ const Home = props => {
                     Hello World
                 </Button>
 
+                <div className={classes.verticalContainer}>
+                    <PrivateData />
+                </div>
+
+                <div className={classes.verticalContainer}>
+                    <ServerConnectionCheck />
+                </div>
+
+
                 <div className={classes.Buttons}>
                     <div className="app-button secondary" onClick={() => console.log('Back button clicked')}>Back</div>
                     <div className="app-button primary" onClick={() => console.log('Next button clicked')}>Next</div>
@@ -62,11 +70,6 @@ const Home = props => {
                 <div className={classes.Buttons}>
                     <div className={`app-button secondary  ${false ? '' : 'disabled'}`} onClick={() => false && console.log('Back button clicked')}>Back</div>
                     <div className={`app-button primary  ${false ? '' : 'disabled'}`} onClick={() => false && console.log('Next button clicked')}>Next</div>
-                </div>
-
-                <div className={classes.Buttons}>
-                    <div className="app-button primary" onClick={store.signUp}>Signup</div>
-                    <div className="app-button primary" onClick={store.signIn}>Signin</div>
                 </div>
 
             </div>
