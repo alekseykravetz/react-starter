@@ -3,11 +3,17 @@ import { Button } from '@material-ui/core';
 
 import * as dataService from '../../data.service';
 
+import { useHttp } from '../../hooks/useHttp.hook';
+import config from '../../config';
+
+
 
 const ServerConnectionCheck = () => {
 
     const [serverHistories, setServerHistories] = useState([]);
     const [lastServerHistory, setLastServerHistory] = useState(null);
+
+    const { isLoading, loadedData } = useHttp(`${config.apiUrl}/${'server-histories'}`, 'get', []);
 
     const getServerHistories = async () => {
 
@@ -17,8 +23,6 @@ const ServerConnectionCheck = () => {
 
             const lastHistory = loadedHistories.slice(-1)[0];
             setLastServerHistory(lastHistory);
-
-            const serverHistoryFromServer = await dataService.getServerHistory(lastHistory._id);
 
         } catch (error) {
             console.error(error);
@@ -55,6 +59,14 @@ const ServerConnectionCheck = () => {
         <>
             <Button color="inherit" onClick={getServerHistories}>Get Server Histories</Button>
             <Button color="inherit" onClick={pingServer}>Ping Server</Button>
+
+
+            <div>
+                Is Loading: {isLoading.toString()}
+            </div>
+            <div>
+                Is Loading: {JSON.stringify(loadedData)}
+            </div>
 
             <div>
                 Ping Server Payload: {JSON.stringify(pingPayload)}
