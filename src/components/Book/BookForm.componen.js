@@ -1,8 +1,31 @@
 import React, { useContext, useState } from 'react';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { BookContext } from '../../contexts/Book.context';
 
+
+const useStyles = makeStyles(theme => ({
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+    },
+    button: {
+        margin: theme.spacing(1),
+    },
+    container: {
+        padding: theme.spacing(1),
+        margin: theme.spacing(1),
+    },
+}));
+
+
 const BookForm = () => {
+
+    const classes = useStyles();
 
     const { addBook } = useContext(BookContext);
 
@@ -15,17 +38,20 @@ const BookForm = () => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
-            <div>Add Book:</div>
-            <label>Title:
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
-            </label>
-            <label>Author:
-                <input type="text" value={author} onChange={e => setAuthor(e.target.value)} />
-            </label>
-
-            <button type="submit">Add</button>
-        </form>
+        <Paper className={classes.container}>
+            <form onSubmit={onSubmit}>
+                <h3>Add Book:</h3>
+                <TextField className={classes.textField} margin="normal" label="Title"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+                <TextField className={classes.textField} margin="normal" label="Author"
+                    value={author}
+                    onChange={e => setAuthor(e.target.value)}
+                />
+                <Button type="submit" variant="contained" className={classes.button}>Add</Button>
+            </form>
+        </Paper>
     );
 
 };
