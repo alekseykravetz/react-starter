@@ -1,4 +1,5 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 import BookContextProvider from '../../contexts/Book.context';
 
@@ -9,7 +10,7 @@ const BookRoute = () => {
 
     return (
         <BookContextProvider>
-            <h1>Book Route</h1>
+            <Typography variant="h1">Book Route</Typography>
             <BookForm />
             <Books />
         </BookContextProvider>
