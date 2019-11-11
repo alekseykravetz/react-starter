@@ -3,24 +3,16 @@ import React, { useState, useEffect } from 'react';
 
 export const useHttp = (url, verb, dependencies) => {
 
-    console.log('useHttp running');
-
     const [isLoading, setIsLoading] = useState(false);
     const [loadedData, setLoadedData] = useState(null);
 
     useEffect(() => {
-        console.log('useHttp running useEffect');
+        console.log('useHttp.useEffect');
 
         async function fetchDataAsync() {
-
-            console.log('useHttp running useEffect fetchDataAsync', url, verb);
-
             const result = await window.fetch(url, { method: verb });
-
             const json = await result.json();
-
             console.log('useHttp running useEffect fetchDataAsync', json);
-
 
             setLoadedData(json);
             setIsLoading(false);
@@ -30,7 +22,6 @@ export const useHttp = (url, verb, dependencies) => {
 
     }, dependencies);
 
-
     return {
         isLoading,
         loadedData
@@ -38,19 +29,9 @@ export const useHttp = (url, verb, dependencies) => {
 };
 
 
-async function authFetch(uri, method) {
+async function authFetch(uri, method, accessToken) {
 
-    const authenticationToken = window.localStorage.getItem('authenticationToken');
-
-    const result = await fetch(uri, {
-        method,
-        headers: {
-            'accept': 'application/json',
-            'Authorization': `Bearer ${authenticationToken}`,
-            'internal-secret': '5e3ocmXO+nBbdlsdtLgqH58E86QWXyWh',
-            'x-api-key': '7CspdIbwSd6nPGDXqgTpo1UzYBDyoYdS5WZzIYT1'
-        }
-    });
+    const result = await fetch(uri, { method, headers: { 'AUTHORIZATION': `Bearer ${accessToken}` } });
 
     return result;
 }

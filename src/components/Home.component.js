@@ -7,10 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import useCommonStyle from './common.style';
 import { useFormInput } from '../hooks/useFormInput.hook';
 
-import TextInput from './controls/TextInput.control.component';
-import Time from './controls/Time.control.component';
-import PrivateData from './controls/PrivateData.control.component';
-import ServerConnectionCheck from './controls/ServerConnectionCheck.control.component';
+import TextInput from './TextInput.component';
+import CurrentDateTime from './CurrentDateTime.component';
+import PrivateData from './PrivateData.component';
+import ServerConnectionCheck from './ServerConnectionCheck.component';
 
 
 const Home = props => {
@@ -29,7 +29,7 @@ const Home = props => {
             <div className={classes.Content}>
 
                 <div className={classes.verticalContainer}>
-                    <Time />
+                    <CurrentDateTime />
                 </div>
 
                 <div className={classes.verticalContainer}
@@ -49,8 +49,8 @@ const Home = props => {
                 </div>
 
 
-                <Button variant="contained" color="primary">
-                    Hello World
+                <Button variant="contained" color="primary" onClick={() => alert(nameForm.value)}>
+                    Show Input Value
                 </Button>
 
                 <div className={classes.verticalContainer}>

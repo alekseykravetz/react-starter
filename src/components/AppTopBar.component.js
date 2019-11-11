@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 
 const AppTopBar = props => {
-   
+
     const classes = useStyles();
     const { user, token, signIn } = useContext(AuthContext);
 
@@ -63,6 +63,9 @@ const AppTopBarNavigationTabs = props => {
                 props.history.push('/about');
                 break;
             case 2:
+                props.history.push('/book');
+                break;
+            case 3:
                 props.history.push('/wrong-path');
                 break;
             default:
@@ -74,6 +77,7 @@ const AppTopBarNavigationTabs = props => {
         <Tabs value={tabsValue} onChange={handleTabsChange}>
             <Tab label="Home" />
             <Tab label="About" />
+            <Tab label="Book" />
             <Tab label="Wrong navigation" />
         </Tabs>
     );

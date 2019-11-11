@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Button } from '@material-ui/core';
 
-import { AuthContext } from '../../contexts/Auth.context';
+import { AuthContext } from '../contexts/Auth.context';
 
-import * as dataService from '../../data.service';
+import * as dataService from '../data.service';
 
 
 const PrivateData = () => {

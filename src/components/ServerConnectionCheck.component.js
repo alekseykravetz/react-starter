@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
-import * as dataService from '../../data.service';
+import * as dataService from '../data.service';
 
-import { useHttp } from '../../hooks/useHttp.hook';
-import config from '../../config';
-
+import { useHttp } from '../hooks/useHttp.hook';
+import config from '../config';
 
 
 const ServerConnectionCheck = () => {
@@ -57,16 +56,8 @@ const ServerConnectionCheck = () => {
 
     return (
         <>
-            <Button color="inherit" onClick={getServerHistories}>Get Server Histories</Button>
-            <Button color="inherit" onClick={pingServer}>Ping Server</Button>
-
-
-            <div>
-                Is Loading: {isLoading.toString()}
-            </div>
-            <div>
-                Is Loading: {JSON.stringify(loadedData)}
-            </div>
+            <Button variant="contained" color="primary" onClick={getServerHistories}>Get Server Histories</Button>
+            <Button variant="contained" color="primary" onClick={pingServer}>Ping Server</Button>
 
             <div>
                 Ping Server Payload: {JSON.stringify(pingPayload)}
@@ -81,14 +72,17 @@ const ServerConnectionCheck = () => {
             </div>
 
             <div>
-                Server Histories: {JSON.stringify()}
+                Server Histories:
                 <ul>
-                    {serverHistories.map(history => {
-                        return (
-                            <li key={history._id} onClick={() => getServerHistory(history._id)}>{JSON.stringify(history)}</li>
-                        );
-                    })}
+                    {serverHistories.map(history => <li key={history._id} onClick={() => getServerHistory(history._id)}>{JSON.stringify(history)}</li>)}
                 </ul>
+            </div>
+
+            <div>
+                Is Loading: {isLoading.toString()}
+            </div>
+            <div>
+                Is Loading: {JSON.stringify(loadedData)}
             </div>
         </>
     );

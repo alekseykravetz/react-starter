@@ -8,6 +8,8 @@ import About from './About.component';
 import UnauthorizedRoute from './UnauthorizedRoute.component';
 import MissingRoute from './MissingRoute.component';
 
+import BookRoute from './Book/BookRoute.component';
+
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     const { user } = useContext(AuthContext);
@@ -27,6 +29,7 @@ const AppRoutes = () => (
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
         <PrivateRoute path="/about" component={About} />
+        <Route path="/book" component={BookRoute} />
         <Route path="**" component={MissingRoute} />
     </Switch>
 );

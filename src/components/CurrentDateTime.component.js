@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-const Time = () => {
+const CurrentDateTime = () => {
     // const classes = useStyles();
     const [currentTime, setCurrentTime] = useState(new Date().toISOString());
 
@@ -21,4 +21,4 @@ const Time = () => {
     );
 };
 
-export default Time;
+export default CurrentDateTime;
