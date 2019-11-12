@@ -72,3 +72,49 @@ export async function signInUser(user) {
 
     return json;
 }
+
+export async function getBooks() {
+    const result = await fetch(`${config.apiUrl}/books`);
+    const json = await result.json();
+    return json;
+}
+
+export async function createBook(book) {
+
+    const fetchOptions = {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(book)
+    };
+
+    const result = await fetch(`${config.apiUrl}/book`, fetchOptions);
+    const json = await result.json();
+    return json;
+}
+
+export async function deleteBook(bookId) {
+
+    const fetchOptions = {
+        method: 'DELETE',
+        headers: { 'content-type': 'application/json' },
+    };
+
+    const result = await fetch(`${config.apiUrl}/book/${bookId}`, fetchOptions);
+    const json = await result.json();
+    return json;
+}
+
+export async function updateBook(book) {
+
+    const fetchOptions = {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(book)
+    };
+
+    const result = await fetch(`${config.apiUrl}/book`, fetchOptions);
+
+    const json = await result.json();
+
+    return json;
+}
