@@ -18,6 +18,7 @@ const Home = props => {
     const commonClasses = useCommonStyle();
 
     const nameForm = useFormInput('enter name');
+    const surnameForm = useFormInput('enter surname');
 
     return (
         <React.Fragment>
@@ -46,6 +47,9 @@ const Home = props => {
 
                 <div className={classes.verticalContainer}>
                     <input type="text" {...nameForm} className={commonClasses.input} />
+                </div>
+                <div className={classes.verticalContainer}>
+                    <input type="text" {...surnameForm} className={commonClasses.input} />
                 </div>
 
 
