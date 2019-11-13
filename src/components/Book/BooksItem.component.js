@@ -4,7 +4,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 
-import { BookContext } from '../../contexts/Book.context';
+import { BookContext } from './context';
 
 
 const BooksItem = ({ book, onBookClick }) => {

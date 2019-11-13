@@ -1,29 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 
-import { BookContext } from '../../contexts/Book.context';
+import { useBookGlobalStyles } from './style';
+import { BookContext } from './context';
 
-
-const useStyles = makeStyles(theme => ({
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-    },
-    button: {
-        margin: theme.spacing(1),
-    },
-    container: {
-        padding: theme.spacing(1),
-        margin: theme.spacing(1),
-    },
-}));
 
 
 const BookDetails = ({ book }) => {
 
-    const classes = useStyles();
+    const classes = useBookGlobalStyles();
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');

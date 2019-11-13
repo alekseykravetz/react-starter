@@ -8,7 +8,7 @@ import About from './About.component';
 import UnauthorizedRoute from './UnauthorizedRoute.component';
 import MissingRoute from './MissingRoute.component';
 
-import BookRoute from './Book/BookRoute.component';
+import BookRoute from './Book';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

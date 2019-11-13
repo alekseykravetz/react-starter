@@ -3,30 +3,14 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 
-import { BookContext } from '../../contexts/Book.context';
-
-
-const useStyles = makeStyles(theme => ({
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: 200,
-    },
-    button: {
-        margin: theme.spacing(1),
-    },
-    container: {
-        padding: theme.spacing(1),
-        margin: theme.spacing(1),
-    },
-}));
+import { useBookGlobalStyles } from './style';
+import { BookContext } from './context';
 
 
 const BookForm = () => {
 
-    const classes = useStyles();
+    const classes = useBookGlobalStyles();
 
     const { addBook } = useContext(BookContext);
 

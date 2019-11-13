@@ -1,12 +1,12 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
-import BookContextProvider from '../../contexts/Book.context';
+import BookContextProvider from './context';
 
 import BookForm from './BookForm.componen';
 import BooksMasterDetails from './BooksMasterDetails.component';
 
-const BookRoute = () => {
+export default () => {
 
     return (
         <BookContextProvider>
@@ -16,5 +16,3 @@ const BookRoute = () => {
         </BookContextProvider>
     );
 };
-
-export default BookRoute;
