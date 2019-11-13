@@ -10,7 +10,7 @@ const BookForm = () => {
 
     const classes = useBookGlobalStyles();
     const { addBook } = useContext(BookContext);
-    const { title, setTitle, author, setAuthor } = useBookState('Title 2', 'Author Name 1');
+    const { title, setTitle, author, setAuthor } = useBookState('', '');
 
     const submit = e => {
         e.preventDefault();

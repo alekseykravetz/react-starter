@@ -11,7 +11,7 @@ const BookDetails = ({ book }) => {
 
     const classes = useBookGlobalStyles();
     const { updateBook, books } = useContext(BookContext);
-    const { title, setTitle, author, setAuthor, id, setId } = useBookState('Title 2', 'Author Name 1');
+    const { title, setTitle, author, setAuthor, id, setId } = useBookState('', '');
 
     useEffect(() => {
         console.log('BookDetails useEffect[book]  -- book: ', book);

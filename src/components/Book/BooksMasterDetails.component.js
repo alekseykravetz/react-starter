@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Paper } from '@material-ui/core';
+import { Paper, Grid } from '@material-ui/core';
 
 import { useBookGlobalStyles } from './style';
 
@@ -16,8 +16,14 @@ const BooksMasterDetails = () => {
 
     return (
         <Paper className={classes.container}>
-            <Books onSelectedBookChanged={changeSelectedBook} />
-            <BookDetails book={selectedBook} />
+            <Grid container direction="row" justify="center" alignItems="flex-start">
+                <Grid item xs>
+                    <Books onSelectedBookChanged={changeSelectedBook} />
+                </Grid>
+                <Grid item xs>
+                    <BookDetails book={selectedBook} />
+                </Grid>
+            </Grid>
         </Paper>
     );
 };
