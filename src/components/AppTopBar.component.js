@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, Button, IconButton, Tabs, Tab } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, Button, IconButton, Tabs, Tab, Menu, MenuItem } from '@material-ui/core';
+import { Menu as MenuIcon, AccountCircle } from '@material-ui/icons';
 
 import { AuthContext } from '../contexts/Auth.context';
 
@@ -25,6 +25,44 @@ const AppTopBar = props => {
     const classes = useStyles();
     const { user, token, signIn } = useContext(AuthContext);
 
+
+    const [profileMenuElement, setProfileMenuElement] = React.useState(null);
+    const isProfileMenuOpen = Boolean(profileMenuElement);
+
+    const handleProfileMenuOpen = event => {
+        setProfileMenuElement(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setProfileMenuElement(null);
+    };
+
+    const handleSignIn = () => {
+        handleMenuClose();
+        props.history.push('/signin');
+    };
+
+    const handleSignUp = () => {
+        handleMenuClose();
+        props.history.push('/signup');
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const renderMenu = (
+        <Menu
+            anchorEl={profileMenuElement}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isProfileMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem onClick={handleSignIn}>Sign In</MenuItem>
+            <MenuItem onClick={handleSignUp}>Sign Up</MenuItem>
+        </Menu>
+    );
+
     return (
         <AppBar position="static">
             <Toolbar>
@@ -34,13 +72,29 @@ const AppTopBar = props => {
                 <Typography variant="h6" className={classes.title}>
                     App
                 </Typography>
+
                 <AppTopBarNavigationTabs {...props} />
+
+                <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                >
+                    <AccountCircle />
+
+                </IconButton>
+
+                {renderMenu}
+
                 {token &&
                     <Typography variant="h6">
                         {user.email}
                     </Typography>
                 }
-                <Button color="inherit" onClick={() => signIn('alex2@alex.com', '123456')}>Login</Button>
+                <Button color="inherit" onClick={() => signIn('1@1', '1')}>Login</Button>
             </Toolbar>
         </AppBar>
     );

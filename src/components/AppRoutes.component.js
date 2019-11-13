@@ -8,6 +8,9 @@ import About from './About.component';
 import UnauthorizedRoute from './UnauthorizedRoute.component';
 import MissingRoute from './MissingRoute.component';
 
+import SignIn from './SignIn.component';
+import SignUp from './SignUp.componen';
+
 import BookRoute from './Book';
 
 
@@ -30,6 +33,8 @@ const AppRoutes = () => (
         <Route path="/home" component={Home} />
         <PrivateRoute path="/about" component={About} />
         <Route path="/book" component={BookRoute} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
         <Route path="**" component={MissingRoute} />
     </Switch>
 );
