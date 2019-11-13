@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { ListItem, ListItemIcon, ListItemText, Checkbox } from '@material-ui/core';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import { ListItem, ListItemIcon, ListItemText, Checkbox, SvgIcon } from '@material-ui/core';
+import { DeleteForeverOutlined, DeleteOutlined } from '@material-ui/icons';
 
 import { BookContext } from './context';
 
@@ -11,8 +9,14 @@ const BooksItem = ({ book, onBookClick }) => {
 
     const { removeBook } = useContext(BookContext);
 
-    const deleteBook = () => removeBook(book._id);
-    const bookClicked = () => onBookClick(book);
+    const deleteBook = (e) => {
+        e.stopPropagation();
+        removeBook(book._id);
+    };
+
+    const bookClicked = () => {
+        onBookClick(book);
+    };
 
     return (
         <ListItem role="listitem" button onClick={bookClicked}>
@@ -24,7 +28,7 @@ const BooksItem = ({ book, onBookClick }) => {
             </ListItemIcon>
             <ListItemText primary={book.title} secondary={book.author} />
             <ListItemText primary={book._id} />
-            <DeleteForeverOutlinedIcon onClick={deleteBook}/>
+            <DeleteForeverOutlined onClick={deleteBook} />
         </ListItem>
     );
 };

@@ -1,50 +1,62 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 
 import { useBookGlobalStyles } from './style';
 import { BookContext } from './context';
+import { useBookState } from './hook';
 
 
 
 const BookDetails = ({ book }) => {
 
     const classes = useBookGlobalStyles();
-
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
+    const { updateBook, books } = useContext(BookContext);
+    const { title, setTitle, author, setAuthor, id, setId } = useBookState('Title 2', 'Author Name 1');
 
     useEffect(() => {
-        if(book) {
-            setTitle(book.title);
-            setAuthor(book.author);
-        }
+        console.log('BookDetails useEffect[book]  -- book: ', book);
+
+        setTitle(book ? book.title : '');
+        setAuthor(book ? book.author : '');
+        setId(book ? book._id : '');
     }, [book]);
 
+    useEffect(() => {
+        console.log('BookDetails useEffect[books]  -- books: ', books);
 
-    const { updateBook } = useContext(BookContext);
+        if (book && !books.find(b => b._id === book._id)) {
+            setTitle('');
+            setAuthor('');
+            setId('');
+        }
+    }, [books]);
 
-    const saveBook = () => updateBook({ _id: book._id, title, author });
+    const submit = e => {
+        e.preventDefault();
+        updateBook({ _id: id, title, author });
+    };
 
     return (
-
         <Paper className={classes.container}>
-            <Typography variant="h5">Book Details:</Typography>
-            {book &&
-                <>
-                    <TextField className={classes.textField} margin="normal" label="Title"
-                        value={title}
-                        onChange={e => setTitle(e.target.value)}
-                    />
-                    <TextField className={classes.textField} margin="normal" label="Author"
-                        value={author}
-                        onChange={e => setAuthor(e.target.value)}
-                    />
-                    <TextField disabled className={classes.textField} margin="normal" label="Id"
-                        value={book && book._id}
-                    />
-                    <Button variant="contained" className={classes.button} onClick={saveBook}>Update</Button>
-                </>
-            }
+            <form onSubmit={submit}>
+                <Typography variant="h5">Book Details:</Typography>
+                {book &&
+                    <>
+                        <TextField className={classes.textField} margin="normal" label="Title"
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                        />
+                        <TextField className={classes.textField} margin="normal" label="Author"
+                            value={author}
+                            onChange={e => setAuthor(e.target.value)}
+                        />
+                        <TextField disabled className={classes.textField} margin="normal" label="Id"
+                            value={id}
+                        />
+                        <Button type="submit" variant="contained" className={classes.button}>Update</Button>
+                    </>
+                }
+            </form>
         </Paper>
     );
 };

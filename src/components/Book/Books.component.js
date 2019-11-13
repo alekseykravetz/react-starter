@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import List from '@material-ui/core/List';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import { Paper, Typography, List } from '@material-ui/core';
 
 import { useBookGlobalStyles } from './style';
 import { BookContext } from './context';

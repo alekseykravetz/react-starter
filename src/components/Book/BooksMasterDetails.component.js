@@ -12,7 +12,7 @@ const BooksMasterDetails = () => {
     const classes = useBookGlobalStyles();
     const [selectedBook, setSelectedBook] = useState(null);
 
-    const changeSelectedBook = (book) => setSelectedBook(book);
+    const changeSelectedBook = book => setSelectedBook(book);
 
     return (
         <Paper className={classes.container}>

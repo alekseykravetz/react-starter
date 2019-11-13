@@ -1,30 +1,25 @@
-import React, { useContext, useState } from 'react';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React, { useContext } from 'react';
+import { Paper, Typography, TextField, Button } from '@material-ui/core';
 
 import { useBookGlobalStyles } from './style';
 import { BookContext } from './context';
+import { useBookState } from './hook';
 
 
 const BookForm = () => {
 
     const classes = useBookGlobalStyles();
-
     const { addBook } = useContext(BookContext);
+    const { title, setTitle, author, setAuthor } = useBookState('Title 2', 'Author Name 1');
 
-    const [title, setTitle] = useState('Title 1');
-    const [author, setAuthor] = useState('Author Name 1');
-
-    const onSubmit = e => {
+    const submit = e => {
         e.preventDefault();
         addBook({ title, author });
     };
 
     return (
         <Paper className={classes.container}>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={submit}>
                 <Typography variant="h5">Add Book:</Typography>
                 <TextField className={classes.textField} margin="normal" label="Title"
                     value={title}
