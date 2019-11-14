@@ -1,7 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+
+import { AuthContext } from './context';
 
 
-export default () => {
+export default props => {
+
+    const { user } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (user) props.history.push('/');
+    }, [user]);
 
     useEffect(() => {
         document.title = 'Unauthorized User!';
@@ -11,6 +19,6 @@ export default () => {
     }, []);
 
     return (
-        <h1 style={{ color: 'black' }}>Unauthorized User! (token has expired or no token provided)</h1>
+        <h1>Unauthorized User! (token has expired or no token provided)</h1>
     );
 };

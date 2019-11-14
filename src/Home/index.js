@@ -34,11 +34,11 @@ const Home = props => {
                 </div>
 
                 <div className={classes.verticalContainer}
-                    onClick={() => props.history.push('/about')}>
-                    navigate to About Page
+                    onClick={() => props.history.push('/private-data')}>
+                    navigate to Private Page
                 </div>
                 <div className={classes.verticalContainer}>
-                    <Link to="/about">About</Link>
+                    <Link to="/private-data">navigate Private Data</Link>
                 </div>
 
                 <div className={classes.verticalContainer}>

@@ -114,7 +114,7 @@ const AppTopBarNavigationTabs = props => {
                 props.history.push('/home');
                 break;
             case 1:
-                props.history.push('/about');
+                props.history.push('/private-data');
                 break;
             case 2:
                 props.history.push('/book');
@@ -130,7 +130,7 @@ const AppTopBarNavigationTabs = props => {
     return (
         <Tabs value={tabsValue} onChange={handleTabsChange}>
             <Tab label="Home" />
-            <Tab label="About" />
+            <Tab label="Private Route" />
             <Tab label="Book" />
             <Tab label="Wrong navigation" />
         </Tabs>

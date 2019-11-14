@@ -15,7 +15,9 @@ import BookRoute from '../Book';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+
     const { user } = useContext(AuthContext);
+
     return (
         <Route {...rest} render={(props) => (
             user === null
@@ -31,7 +33,7 @@ const ContentRoutes = () => (
         <Route path="/unauthorized" component={UnauthorizedRoute} />
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        <PrivateRoute path="/about" component={PrivatePage} />
+        <PrivateRoute path="/private-data" component={PrivatePage} />
         <Route path="/book" component={BookRoute} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
