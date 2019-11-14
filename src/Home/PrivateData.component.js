@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 
 import { AuthContext } from '../App/context';
 
-import * as dataService from '../data.service';
+import config from '../config';
 
 
 const PrivateData = () => {
@@ -12,7 +12,16 @@ const PrivateData = () => {
     const [ data, setData ] = useState('');
 
     const getPrivateData = async accessToken => {
-        const privateData = await dataService.getPrivateData(accessToken);
+    
+        const result = await fetch(`${config.apiUrl}/private-api`, { 
+            method: 'GET', 
+            headers: { 'AUTHORIZATION': `Bearer ${accessToken}` } 
+        });
+        if (result.status === 400 || result.status === 401) {
+            alert('Unauthorized request! (token has expired or no token provided)');
+        }
+        const privateData = await result.json();
+
         setData(JSON.stringify(privateData));
     };
 

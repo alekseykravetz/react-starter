@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
-import * as dataService from '../data.service';
+import config from '../config';
 
 import { useHttp } from '../hooks/useHttp.hook';
-import config from '../config';
 
 
 const ServerConnectionCheck = () => {
@@ -12,12 +11,13 @@ const ServerConnectionCheck = () => {
     const [serverHistories, setServerHistories] = useState([]);
     const [lastServerHistory, setLastServerHistory] = useState(null);
 
-    const { isLoading, loadedData } = useHttp(`${config.apiUrl}/${'server-histories'}`, 'get', []);
+    const { isLoading, loadedData } = useHttp(`${config.apiUrl}/${'server-histories'}`, { method: 'GET' }, []);
 
     const getServerHistories = async () => {
 
         try {
-            const loadedHistories = await dataService.getServerHistories();
+            const result = await fetch(`${config.apiUrl}/${'server-histories'}`);
+            const loadedHistories = await result.json();
             setServerHistories(loadedHistories);
 
             const lastHistory = loadedHistories.slice(-1)[0];
@@ -33,7 +33,9 @@ const ServerConnectionCheck = () => {
     const getServerHistory = async id => {
 
         try {
-            const serverHistoryFromServer = await dataService.getServerHistory(id);
+            const result = await fetch(`${config.apiUrl}/${'server-history'}/${id}`);
+            const serverHistoryFromServer = await result.json();
+            
             setServerHistory(serverHistoryFromServer);
 
         } catch (error) {
@@ -46,7 +48,11 @@ const ServerConnectionCheck = () => {
     const pingServer = async () => {
 
         try {
-            const serverPingResult = await dataService.pingServer('Some Name', 'Some message');
+            const name = 'Some name';
+            const message = 'Some message';
+            const result = await fetch(`${config.apiUrl}/${'server-ping'}/${name}/${message}`);
+            const serverPingResult = await result.json();
+
             setPingPayload(serverPingResult);
 
         } catch (error) {

@@ -1,9 +1,14 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import * as dataService from '../data.service';
+import config from '../config';
 
 
-export const BookContext = createContext();
+export const BookContext = createContext({ 
+    books: [{_id: '', title: '', author: ''}], 
+    addBook: async book => {}, 
+    removeBook: async id => {}, 
+    updateBook: async book => {},
+});
 
 const BookContextProvider = props => {
 
@@ -14,7 +19,10 @@ const BookContextProvider = props => {
 
         const loadBooksAsync = async () => {
             console.log('BookContextProvider.useEffect, []');
-            const loadedBooks = await dataService.getBooks();
+
+            const result = await fetch(`${config.apiUrl}/books`);
+            const loadedBooks = await result.json();
+
             setBooks(loadedBooks || []);
         };
 
@@ -26,19 +34,39 @@ const BookContextProvider = props => {
     }, []);
 
     const removeBook = async id => {
-        const result = await dataService.deleteBook(id);
-        if (result) {
+    
+        const result = await fetch(`${config.apiUrl}/book/${id}`, {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+        });
+        const isRemoved = await result.json();
+
+        if (isRemoved) {
             setBooks(books.filter(b => b._id !== id));
         }
     };
 
     const addBook = async book => {
-        const createdBook = await dataService.createBook(book);
+
+        const result = await fetch(`${config.apiUrl}/book`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(book)
+        });
+        const createdBook = await result.json();
+
         setBooks([...books, createdBook]);
     };
 
     const updateBook = async book => {
-        const updatedBook = await dataService.updateBook(book);
+    
+        const result = await fetch(`${config.apiUrl}/book`, {
+            method: 'PUT',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(book)
+        });
+        const updatedBook = await result.json();
+    
         const booksWithoutUpdated = books.filter(b => b._id !== updatedBook._id);
         setBooks([...booksWithoutUpdated, updatedBook]);
     };
