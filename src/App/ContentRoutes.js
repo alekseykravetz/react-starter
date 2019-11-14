@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { AuthContext } from '../contexts/Auth.context';
+import { AuthContext } from './context';
 
-import Home from './Home.component';
-import About from './About.component';
-import UnauthorizedRoute from './UnauthorizedRoute.component';
-import MissingRoute from './MissingRoute.component';
+import Home from '../Home';
+import PrivatePage from '../PrivatePage';
+import UnauthorizedRoute from './UnauthorizedRoute';
+import MissingRoutePage from './MissingRoute';
 
-import SignIn from './SignIn.component';
-import SignUp from './SignUp.componen';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
-import BookRoute from './Book';
+import BookRoute from '../Book';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -26,17 +26,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 
-const AppRoutes = () => (
+const ContentRoutes = () => (
     <Switch>
         <Route path="/unauthorized" component={UnauthorizedRoute} />
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        <PrivateRoute path="/about" component={About} />
+        <PrivateRoute path="/about" component={PrivatePage} />
         <Route path="/book" component={BookRoute} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route path="**" component={MissingRoute} />
+        <Route path="**" component={MissingRoutePage} />
     </Switch>
 );
 
-export default AppRoutes;
+export default ContentRoutes;

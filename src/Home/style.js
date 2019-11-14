@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 
-export default makeStyles(theme => ({
+const useHomeStyles = makeStyles(theme => ({
+
     control: {
         maxWidth: 200
     },
@@ -50,3 +51,5 @@ export default makeStyles(theme => ({
         marginiRght: 20,
     },
 }));
+
+export { useHomeStyles };

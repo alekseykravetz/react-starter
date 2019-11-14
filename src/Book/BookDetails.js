@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Paper, Typography, TextField, Button } from '@material-ui/core';
 
-import { useBookGlobalStyles } from './style';
+import { useAppStyles } from '../App/style';
 import { BookContext } from './context';
 import { useBookState } from './hook';
 
@@ -9,7 +9,7 @@ import { useBookState } from './hook';
 
 const BookDetails = ({ book }) => {
 
-    const classes = useBookGlobalStyles();
+    const classes = useAppStyles();
     const { updateBook, books } = useContext(BookContext);
     const { title, setTitle, author, setAuthor, id, setId } = useBookState('', '');
 

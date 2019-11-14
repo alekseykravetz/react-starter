@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button } from '@material-ui/core';
 
-import { AuthContext } from '../contexts/Auth.context';
+import { AuthContext } from '../App/context';
 
 import * as dataService from '../data.service';
 

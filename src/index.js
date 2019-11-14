@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // import './index.css';  // Webpack css loader required
 
 
-import App from './components/App.component';
+import App from './App';
 
 
 ReactDOM.render((

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 
-const useBookGlobalStyles = makeStyles(theme => ({
+const useAppStyles = makeStyles(theme => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -16,4 +16,4 @@ const useBookGlobalStyles = makeStyles(theme => ({
     },
 }));
 
-export { useBookGlobalStyles };
+export { useAppStyles };

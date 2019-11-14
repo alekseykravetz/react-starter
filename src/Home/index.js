@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import useCommonStyle from './common.style';
+import { useHomeStyles } from './style';
 import { useFormInput } from '../hooks/useFormInput.hook';
 
 import TextInput from './TextInput.component';
@@ -15,7 +15,7 @@ import ServerConnectionCheck from './ServerConnectionCheck.component';
 
 const Home = props => {
     const classes = useStyles();
-    const commonClasses = useCommonStyle();
+    const commonClasses = useHomeStyles();
 
     const nameForm = useFormInput('enter name');
     const surnameForm = useFormInput('enter surname');

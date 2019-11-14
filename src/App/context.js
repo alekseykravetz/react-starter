@@ -4,15 +4,16 @@ import jwt from 'jsonwebtoken';
 import * as dataService from '../data.service';
 
 
-
-export const AuthContext = createContext({ user: '', token: '', signIn: async (email, password) => { }, signUp: async (email, name, password) => { } });
-
+export const AuthContext = createContext({
+    user: '', token: '',
+    signIn: async (email, password) => { },
+    signUp: async (email, name, password) => { }
+});
 
 const AuthContextProvider = props => {
 
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-
 
     const signUp = async (email, name, password) => {
 
@@ -23,7 +24,6 @@ const AuthContextProvider = props => {
 
         setUser(decodedUser);
         setToken(accessToken);
-
         // window.localStorage.setItem('accessToken', tokens.access_token);
     };
 
@@ -34,12 +34,11 @@ const AuthContextProvider = props => {
 
         setUser(decodedUser);
         setToken(accessToken);
-
         // window.localStorage.setItem('accessToken', accessToken);
     };
 
     return (
-        <AuthContext.Provider value={{ user, token, signIn, signUp }}>
+        <AuthContext.Provider value={{ user, signIn, signUp }}>
             {props.children}
         </AuthContext.Provider>
     );

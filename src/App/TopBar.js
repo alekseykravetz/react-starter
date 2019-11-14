@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Tabs, Tab, Menu, MenuItem } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle } from '@material-ui/icons';
 
-import { AuthContext } from '../contexts/Auth.context';
+import { AuthContext } from './context';
 
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 const AppTopBar = props => {
 
     const classes = useStyles();
-    const { user, token, signIn } = useContext(AuthContext);
+    const { user, signIn } = useContext(AuthContext);
 
 
     const [profileMenuElement, setProfileMenuElement] = React.useState(null);
@@ -89,7 +89,7 @@ const AppTopBar = props => {
 
                 {renderMenu}
 
-                {token &&
+                {user &&
                     <Typography variant="h6">
                         {user.email}
                     </Typography>

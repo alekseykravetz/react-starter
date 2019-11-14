@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { Paper, Typography, List } from '@material-ui/core';
 
-import { useBookGlobalStyles } from './style';
+import { useAppStyles } from '../App/style';
 import { BookContext } from './context';
 
-import BooksItem from './BooksItem.component';
+import BooksItem from './BooksItem';
 
 
 const Books = ({ onSelectedBookChanged }) => {
 
-    const classes = useBookGlobalStyles();
+    const classes = useAppStyles();
     const { books } = useContext(BookContext);
 
     const changeSelectedBook = (book) => onSelectedBookChanged(book);
