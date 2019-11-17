@@ -1,4 +1,5 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import AuthContextProvider from './context';
 
@@ -8,6 +9,7 @@ import ContentRoutes from './ContentRoutes';
 
 export default props => (
     <AuthContextProvider>
+        <CssBaseline />
         <TopBar {...props} />
         <ContentRoutes />
     </AuthContextProvider>

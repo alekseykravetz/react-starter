@@ -1,9 +1,9 @@
 
-:root {
+/* :root {
     --logo-image: url('./assets/noname-logo.png');
-}
+} */
 
-html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; }
+/* html, body, #root { margin: 0; padding: 0; height: 100%; width: 100%; } */
 
 .app-button { width: 85px; display: flex; justify-content: center; align-items: center; border-radius: 21px; cursor: pointer; font-size: 17px; font-weight: 700; border: #ff3300 solid 2px; }
 .app-button.primary { background-color: #ff3300; color: white; margin-left: 10px; }

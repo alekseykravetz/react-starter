@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
+import FontIcon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
+
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { useHomeStyles } from './style';
 import { useFormInput } from '../hooks/useFormInput.hook';
@@ -11,6 +17,8 @@ import TextInput from './TextInput.component';
 import CurrentDateTime from './CurrentDateTime.component';
 import PrivateData from './PrivateData.component';
 import ServerConnectionCheck from './ServerConnectionCheck.component';
+
+
 
 
 const Home = props => {
@@ -28,6 +36,20 @@ const Home = props => {
             </div>
 
             <div className={classes.Content}>
+
+                <FontIcon color="error">star</FontIcon>
+
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography className={classes.heading}>Expansion Panel 1</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Typography>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                            sit amet blandit leo lobortis eget.
+                        </Typography>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
 
                 <div className={classes.verticalContainer}>
                     <CurrentDateTime />
